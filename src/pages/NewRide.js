@@ -1,8 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import NewRideForm from '../components/NewRideComponents/NewRideForm';
 
 function NewRide() {
   return (
-    <div>NewRide</div>
+    <div>
+      <NewRideForm/>
+      <br/>
+      <Link to={-1}>Go back</Link>
+    </div>
   )
 }
 

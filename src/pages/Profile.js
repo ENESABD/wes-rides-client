@@ -1,8 +1,13 @@
 import React from 'react';
+import LogOut from '../components/ProfileComponents/LogOut';
+import ProfileDetails from '../components/ProfileComponents/ProfileDetails';
 
 function Profile() {
   return (
-    <div>Profile</div>
+    <div>
+      <ProfileDetails/>
+      <LogOut/>
+    </div>
   )
 }
 

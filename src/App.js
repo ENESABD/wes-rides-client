@@ -20,7 +20,7 @@ import SignUp from './pages/SignUp';
 
 function App() {
 
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   return (
     <>

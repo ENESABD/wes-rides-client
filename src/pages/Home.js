@@ -1,8 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Rides from '../components/HomeComponents/Rides';
 
 function Home() {
     return (
-        <div>You are in!</div>
+        <div>
+            <Link to="/new-ride">Post a ride!</Link>
+            <Rides/>
+        </div>
     )
 }
 

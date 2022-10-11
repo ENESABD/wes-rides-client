@@ -1,8 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import ResetRequestForm from '../components/ForgotPasswordComponents/ResetRequestForm';
 
 function ForgotPassword() {
   return (
-    <div>ForgotPassword</div>
+    <div>
+      <ResetRequestForm/>
+      <br/>
+      <Link to={-1}>Go back</Link>
+    </div>
   )
 }
 
