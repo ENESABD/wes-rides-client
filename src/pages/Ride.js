@@ -1,28 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import useAxios from '../hooks/AxiosAbstraction/useAxios';
 import RideForOwner from './RideForOwner';
 import RideForViewer from './RideForViewer';
 
 function Ride() {
 
-  const [rideInfo, setRideInfo] = useState({
-    location: "Boston", additional_comments:"I am cool", 
-    status: "awaiting_confirmation", associated_ride_interests: [
-      {id: 1, status: 'awaiting_confirmation', user_name: 'Someone1'},
-      {id: 2, status: 'awaiting_confirmation', user_name: 'Someone2'},
-      {id: 3, status: 'rejected', user_name: 'Someone3'}
-    ]});
-  const [isOwner, setIsOwner] = useState(true);
+  const [rideUrl, setRideUrl] = useState();
+  const [rideInfo, errorMessage, isLoading] = useAxios('GET', rideUrl);
+  const [isOwner, setIsOwner] = useState();
 
   const { id } = useParams();
 
-  if (!rideInfo.location) {
-    return <Navigate to="/not-found" replace={true} />
-  }
+  useEffect(() => {
+    if (id) {
+      setRideUrl(`rides/${id}`);
+    }
+  }, [id])
+
+  useEffect(() => {
+    if (rideInfo?.request_made_by_owner === true) {
+      setIsOwner(true);
+    }
+
+    if (rideInfo?.request_made_by_owner === false) {
+      setIsOwner(false);
+    }
+  }, [rideInfo])
 
   return (
     <div>
-      {isOwner ? <RideForOwner rideInfo={rideInfo}/> : <RideForViewer rideInfo={rideInfo}/>}
+      {errorMessage ? <Navigate to="/not-found" replace={true} /> :
+      (isLoading || !rideInfo) ? <p>Loading...</p> :
+      isOwner ? <RideForOwner rideInfo={rideInfo} id={id}/> : 
+      <RideForViewer rideInfo={rideInfo} id={id}/>}
     </div>
   )
 }

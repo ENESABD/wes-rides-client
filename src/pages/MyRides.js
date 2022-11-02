@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import RideList from '../components/AcrossPagesComponents/RideList';
+import { Link } from 'react-router-dom';
+import RideList from '../components/CommonComponents/RideList';
 
 function MyRides() {
 
@@ -11,6 +12,7 @@ function MyRides() {
   return (
     <div>
       <h2>My Postings</h2>
+      <Link to="/new-ride">Post a new ride!</Link>
       <RideList rides={rides}/>
       <br/>
       <h2>My Requests</h2>

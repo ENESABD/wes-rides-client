@@ -1,37 +1,55 @@
-import React, { useState } from 'react';
-import Edit from '../AcrossPagesComponents/Edit';
-import ChangePassword from './ChangePassword';
+import React, { useEffect, useState } from 'react';
+import Edit from '../CommonComponents/Edit';
+import inputObjects from '../../inputs.json';
+import { passwordConfirmationCheck } from '../../commonFunctions';
 
-function ProfileDetails() {
+function ProfileDetails({ editable, userData }) {
 
-    const [userInfo, setUserInfo] = useState({
-        user_name: 'NS',
-        user_email: 'ns@wes.edu',
-        user_facebook: 'NS_Wes'
-    });
+    const noChangeWithSideEffect = ({values}) => {
+        const value_key = Object.keys(values)[0];
+        if (value_key) {
+            setCurrentUserData((prevUserData => ({...prevUserData, [inputObjects[value_key].value_label]: values[value_key]})))
+        }
+        return values;
+    }  
+
+    const [currentUserData, setCurrentUserData] = useState({});
+    
+    useEffect(() => {
+        setCurrentUserData(userData);
+    }, [userData])
+    
+    const rows = ['name', 'phone', 'snapchat', 'instagram', 'facebook'];
 
     return (
-        <div>
-            <div>Name: {userInfo.user_name}</div>
-            <Edit param={'user_name'} paramType={'text'} paramValue={userInfo.user_name}/>
-
-            <div>Email: {userInfo.user_email}</div>
-            <Edit param={'user_email'} paramType={'email'} paramValue={userInfo.user_email}/>
-
-            <div>Phone number: {userInfo.phone_number ? userInfo.phone_number : 'Not provided'}</div>
-            <Edit param={'phone_number'} paramType={'tel'} paramValue={userInfo.phone_number}/>
-
-            <div>Snapchat: {userInfo.user_snapchat ? userInfo.user_snapchat : 'Not provided'}</div>
-            <Edit param={'user_snapchat'} paramType={'text'} paramValue={userInfo.user_snapchat}/>
-
-            <div>Instagram: {userInfo.user_instagram ? userInfo.user_instagram : 'Not provided'}</div>
-            <Edit param={'user_instagram'} paramType={'text'} paramValue={userInfo.user_instagram}/>
-
-            <div>Facebook: {userInfo.user_facebook ? userInfo.user_facebook : 'Not provided'}</div>
-            <Edit param={'user_facebook'} paramType={'text'} paramValue={userInfo.user_facebook}/>
-
-            <ChangePassword/>
-        </div>
+        <>
+            <ul>
+                <li>Email: {currentUserData?.user_email}</li>
+                {rows.map((row) => {
+                    let inputObject = inputObjects[row];
+                    let label = inputObject.label;
+                    let current_value = currentUserData?.[inputObject.value_label];
+                
+                    return <li key={label}>
+                        <div>{label}: {current_value || 'Not provided'}</div>
+                        {editable && 
+                        <Edit 
+                            inputObject={inputObject}
+                            prevValue={current_value}  
+                            formType={'single-input'} 
+                            requestUrl={'/user'}
+                            formattingFunction={noChangeWithSideEffect}
+                        />}
+                    </li>
+                })}
+                {editable && 
+                <Edit
+                    formType={'password-update'} 
+                    requestUrl={'/user/password-update'}
+                    formattingFunction={passwordConfirmationCheck}
+                />}
+            </ul>
+        </>
     )
 }
 

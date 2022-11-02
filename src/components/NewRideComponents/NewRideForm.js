@@ -1,109 +1,72 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { captureRideTags, formatRideDates } from '../../commonFunctions';
+import useFormWithRequest from '../../hooks/useFormWithRequest';
+import InputItem from '../CommonComponents/InputItem';
+import inputObjects from '../../inputs.json';
+import ChooseDate from '../CommonComponents/ChooseDate';
+import ChooseTags from '../CommonComponents/ChooseTags';
+import { Navigate } from 'react-router-dom';
 
 function NewRideForm() {
-    const [message, setMessage] = useState();
-    const [dateType, setDateType] = useState('');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Form Submitted");
+    const newRideChecks = ({ values, event }) => {
+        let capturedTags = captureRideTags({event}); 
+        if (typeof(capturedTags) === "string") {
+            return capturedTags;
+        }
+        let formattedDates = formatRideDates({event});
+        if (typeof(formattedDates) === "string") {
+            return formattedDates;
+        }
+        return {...values, ...formattedDates, ...capturedTags};
     }
-
-    const handleChange = (e) => {
-        e.preventDefault();
-        console.log("Value changed");
-    }
-
-    const handleCheckboxChange = (e) => {
-        e.preventDefault();
-        console.log("Value changed");
-    }
-
+    
+    const [values, handleChange, handleSubmit, response, errorMessage, requestInProcess] = 
+        useFormWithRequest('POST', '/rides', newRideChecks);
+    
     return (
-        <form onSubmit={handleSubmit}>
-            <h1>New Ride Form</h1>
-            <h2>Instructions</h2>
-            <ul>
-                <li>Required fields are followed by <strong><span aria-label="required">*</span></strong>.</li>
-                <li>Location can only contain letters, numbers, spaces, or commas,
-                    and must be limited to 50 characters.</li>
-                <li>At least one filter must be true.</li>
-                <li>Additional comments must be limited to 1500 characters.</li>
-            </ul>
+        <>
+            {response?.ride_id ? <Navigate to={`/ride/${response.ride_id}`}/> : 
+            <form onSubmit={handleSubmit}>
+                <h1>New Ride Form</h1>
+                <h2>Instructions</h2>
+                <ul>
+                    <li>Required fields are followed by <strong><span aria-label="required">*</span></strong>.</li>
+                    <li>Location can only contain letters, numbers, spaces, or commas,
+                        and must be limited to 50 characters.</li>
+                    <li>At least one filter must be true.</li>
+                    <li>Additional comments must be limited to 1500 characters.</li>
+                </ul>
+                
+                <InputItem 
+                    inputObject={inputObjects.location}
+                    value={values.location}
+                    handleChange={handleChange}
+                    />
+                <br/>
+
+                <ChooseDate values={values} handleChange={handleChange} />
+
+                <br/>
+                <br/>
+
+                <ChooseTags isDisabled={false}/>
             
-            <label htmlFor="location">
-                Location <span aria-label="required">*</span>:
-            </label>
-            <input id="location" type="text" name="location" required={true} maxLength="24" pattern="^([a-zA-Z]+\s)*[a-zA-Z]+$" onChange={handleChange}/>
-            
-            <br/>
+                <br/>
+                <br/>
 
-            <label htmlFor="date-type">Please choose one of the options:<span aria-label="required">*</span></label>
-            
-            <br/>
-            <br/>
-            
-            <label htmlFor="interval">
-                I am flexible within a time interval.
-            </label>
-            <input id="interval" type="radio" name="date-type" value="interval" required={true} hidden onChange={handleChange}/>
+                <InputItem 
+                    inputObject={inputObjects.additional_comments}
+                    value={values.additional_comments}
+                    handleChange={handleChange}
+                    />
+                <br/>
 
-            <br/>
-            <br/>
+                {errorMessage ? <p>{errorMessage}<br/></p> : null}
+                {requestInProcess ? <p>Loading...<br/></p> : null}
 
-            <label htmlFor="exact">
-                I have an exact date in mind.
-            </label>
-            <input id="exact" type="radio" name="date-type" value="exact" required={true} hidden onChange={handleChange}/>
-
-            <br/>
-            <br/>
-
-            {dateType === "interval" ? 
-            <>
-            <input id="start-date" type="date" name="start-date" required={true} onChange={handleChange}/>
-            <input id="end-date" type="date" name="end-date" required={true} onChange={handleChange}/>
-            </>
-            : null}
-
-            {dateType === "exact" ? 
-            
-            <input id="exact-date" type="date" name="exact-date" required={true} onChange={handleChange}/>
-
-            : null}
-
-            <br/>
-            <br/>
-
-            <input type="checkbox" id="has-car" name="has-car" hidden onChange={handleCheckboxChange}/>
-            <label htmlFor="has-car">I am willing to drive my car and am looking for someone to join me</label>
-
-            <br/>
-            <br/>
-
-            <input type="checkbox" id="wants-uber" name="wants-uber" hidden onChange={handleCheckboxChange}/>
-            <label htmlFor="wants-uber">I am willing to split an uber</label>
-
-            <br/>
-            <br/>
-
-            <input type="checkbox" id="wants-car" name="wants-car" hidden onChange={handleCheckboxChange}/>
-            <label htmlFor="wants-car">I am willing to join someone who has a car</label>
-        
-            <br/>
-            <br/>
-
-            <label htmlFor="additional-comments">
-                Additional comments:
-            </label>
-            <input id="additional-comments" type="text" name="additional-comments" maxLength="1500" onChange={handleChange}/>
-
-            <br/>
-
-            {message ? <p>{message}<br/></p> : null}
-
-            <button type="submit">Submit</button>
-        </form>
+                <button type="submit">Submit</button>
+            </form> }
+        </>
     )
 }
 

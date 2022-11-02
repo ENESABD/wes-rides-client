@@ -2,11 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function InterestInRide({ ride_interest }) {
-
-   
-
-    
-
     return (
         <li key={ride_interest.id}>
 

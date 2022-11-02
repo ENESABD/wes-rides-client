@@ -1,0 +1,152 @@
+{
+    "name": {
+        "name": "name",
+        "label": "Name",
+        "type": "text",
+        "value_label": "user_name",
+        "required": true,
+        "minLength": 1,
+        "maxLength": 24,
+        "pattern": "^([a-zA-Z]+\\s)*[a-zA-Z]+$"
+    },
+    "email": {
+        "name": "email",
+        "label": "Email",
+        "type": "email",
+        "value_label": "user_email",
+        "required": true,
+        "minLength": 0,
+        "maxLength": 1000,
+        "pattern": null
+    },
+    "new_password": {
+        "name": "new_password",
+        "label": "New password",
+        "type": "password",
+        "value_label": null,
+        "required": true,
+        "minLength": 6,
+        "maxLength": 32,
+        "pattern": null
+    },
+    "new_password2": {
+        "name": "new_password2",
+        "label": "Confirm new password",
+        "type": "password",
+        "value_label": null,
+        "required": true,
+        "minLength": 6,
+        "maxLength": 32,
+        "pattern": null
+    },
+    "phone": {
+        "name": "phone",
+        "label": "Phone number",
+        "type": "tel",
+        "value_label": "user_phone_number",
+        "required": false,
+        "minLength": 10,
+        "maxLength": 10,
+        "pattern": "[0-9]{10}"
+    },
+    "snapchat": {
+        "name": "snapchat",
+        "label": "Snapchat",
+        "type": "text",
+        "value_label": "user_snapchat",
+        "required": false,
+        "minLength": 0,
+        "maxLength": 50,
+        "pattern": null
+    },
+    "instagram": {
+        "name": "instagram",
+        "label": "Instagram",
+        "type": "text",
+        "value_label": "user_instagram",
+        "required": false,
+        "minLength": 0,
+        "maxLength": 50,
+        "pattern": null
+    },
+    "facebook": {
+        "name": "facebook",
+        "label": "Facebook",
+        "type": "text",
+        "value_label": "user_facebook",
+        "required": false,
+        "minLength": 0,
+        "maxLength": 50,
+        "pattern": null
+    },
+    "old_password": {
+        "name": "old_password",
+        "label": "Old password",
+        "type": "password",
+        "value_label": null,
+        "required": true,
+        "minLength": 6,
+        "maxLength": 32,
+        "pattern": null
+    },
+    "password": {
+        "name": "password",
+        "label": "Password",
+        "type": "password",
+        "value_label": null,
+        "required": true,
+        "minLength": 6,
+        "maxLength": 32,
+        "pattern": null
+    },
+    "location": {
+        "name": "location",
+        "label": "Location",
+        "type": "text",
+        "value_label": "location",
+        "required": true,
+        "minLength": 0,
+        "maxLength": 24,
+        "pattern": "^[\\.a-zA-Z0-9, ]*$"
+    },
+    "additional_comments": {
+        "name": "additional_comments",
+        "label": "Additional comments",
+        "type": "text",
+        "value_label": "additional_comments",
+        "required": false,
+        "minLength": 0,
+        "maxLength": 1500,
+        "pattern": null
+    },
+    "start_date": {
+        "name": "start_date",
+        "label": "Flexible from",
+        "type": "date",
+        "value_label": "start_date",
+        "required": true,
+        "minLength": 10,
+        "maxLength": 10,
+        "pattern": "\\d{4}-\\d{2}-\\d{2}"
+    },
+    "end_date": {
+        "name": "end_date",
+        "label": "through",
+        "type": "date",
+        "value_label": "end_date",
+        "required": true,
+        "minLength": 10,
+        "maxLength": 10,
+        "pattern": "\\d{4}-\\d{2}-\\d{2}"
+    },
+    "exact_date": {
+        "name": "exact_date",
+        "label": "Exact date",
+        "type": "date",
+        "value_label": "exact_date",
+        "required": true,
+        "minLength": 10,
+        "maxLength": 10,
+        "pattern": "\\d{4}-\\d{2}-\\d{2}"
+    }
+}

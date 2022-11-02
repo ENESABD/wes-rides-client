@@ -1,36 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { noChange } from '../../commonFunctions';
+import useFormWithRequest from '../../hooks/useFormWithRequest';
+import InputItem from '../CommonComponents/InputItem';
+import inputObjects from '../../inputs.json'
 
 function ResetRequestForm() {
-    const [message, setMessage] = useState();
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Form Submitted");
-    }
-
-    const handleChange = (e) => {
-        e.preventDefault();
-        console.log("Value changed");
-    }
+    
+    const [value, handleChange, handleSubmit, response, errorMessage, requestInProcess] = 
+        useFormWithRequest('POST', '/authentication/forgot-password', noChange);
 
     return (
-        <form onSubmit={handleSubmit}>
-            <p>Please enter your registered email and click on the button below. 
-                You will then be emailed a password reset link.</p>
-        
-            <br/>
+        <>{
+            response?.success ? <Navigate to='/email-sent' />
+            :
+            <form onSubmit={handleSubmit}>
+                <p>Please enter your registered email and click on the button below. 
+                    You will then be emailed a password reset link.</p>
+            
+                <br/>
 
-            <label htmlFor="email">
-                Email:
-            </label>
-            <input id="email" type="email" name="email" required={true} onChange={handleChange}/>
+                <InputItem
+                    inputObject={inputObjects.email}
+                    value={value.email}
+                    handleChange={handleChange}
+                />
 
-            <br/>
+                <br/>
 
-            {message ? <p>{message}<br/></p> : null}
+                {errorMessage && <p>{errorMessage}<br/></p>} 
+                {requestInProcess && <p>Loading...<br/></p>} 
 
-            <button type="submit">Reset password</button>
-        </form>
+                <button type="submit">Reset password</button>
+            </form>
+        }</>
     )
 }
 

@@ -18,9 +18,16 @@ import Ride from './pages/Ride';
 import RideInterest from './pages/RideInterest';
 import SignUp from './pages/SignUp';
 
+import useVerify from './hooks/useVerify';
+
+
 function App() {
 
-  const isAuthenticated = true;
+  const [isAuthenticated, setIsAuthenticated] = useVerify();
+
+  if (isAuthenticated === undefined) {
+    return <h1>Loading...</h1>
+  }
 
   return (
     <>
@@ -28,21 +35,21 @@ function App() {
       <Routes>
         <Route path="*" element={<NotFound/>} />
         <Route index element={isAuthenticated ? <Home/> : <Landing/>} />
+        <Route path="/password-reset/:jwt" element={<PasswordReset/>} />
 
         <Route element={<PrivateRoute isAllowed={!isAuthenticated}/>}>
           <Route path="/email-sent" element={<EmailSent/>} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated}/>} />
           <Route path="/sign-up" element={<SignUp/>} />
           <Route path="/forgot-password" element={<ForgotPassword/>} />
-          <Route path="/password-reset/:jwt" element={<PasswordReset/>} />
         </Route>
-        
+    
         <Route element={<PrivateRoute isAllowed={isAuthenticated}/>}>
           <Route path="/ride/:id" element={<Ride/>} />
           <Route path="/ride-interest/:id" element={<RideInterest/>} />
           <Route path="/new-ride" element={<NewRide/>} />
           <Route path="/my-rides" element={<MyRides/>} />
-          <Route path="/profile" element={<Profile/>} />
+          <Route path="/profile" element={<Profile setIsAuthenticated={setIsAuthenticated}/>} />
         </Route>
       </Routes>
     </>

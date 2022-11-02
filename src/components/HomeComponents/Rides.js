@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RideSearch from './RideSearch';
-import RideList from '../AcrossPagesComponents/RideList';
+import RideList from '../CommonComponents/RideList';
 
 function Rides() {
 

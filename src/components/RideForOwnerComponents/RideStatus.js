@@ -1,14 +1,14 @@
 import React from 'react';
 import InterestInRide from './InterestInRide';
 
-function RideStatus({ rideInfo }) {
+function RideStatus({ rideStatus, associatedRideInterests }) {
 
 
-  if (rideInfo.status === "failed") {
+  if (rideStatus === "failed") {
     return <p>This ride has failed.</p>
   }
 
-  if (rideInfo.status === "pending") {
+  if (rideStatus === "pending") {
     return <p>No one has shown interest in this ride.</p>
   }
 
@@ -16,7 +16,7 @@ function RideStatus({ rideInfo }) {
   return (
     <div>
       <ul>
-        {rideInfo.associated_ride_interests.map((ride_interest) => {
+        {associatedRideInterests.map((ride_interest) => {
           return <InterestInRide ride_interest={ride_interest}/>
         })}
       </ul>

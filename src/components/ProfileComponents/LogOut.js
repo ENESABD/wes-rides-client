@@ -1,8 +1,14 @@
 import React from 'react';
 
-function LogOut() {
+function LogOut({ setIsAuthenticated }) {
+
+  const handleLogOut = () => {
+    localStorage.removeItem("jw_token");
+    setIsAuthenticated(false);
+  }
+
   return (
-    <button>Log out</button>
+    <button onClick={handleLogOut}>Log out</button>
   )
 }
 
