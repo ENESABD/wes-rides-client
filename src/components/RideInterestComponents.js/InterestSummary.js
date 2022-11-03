@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { makeDateDescription } from '../../commonFunctions';
 
-function InterestSummary({ rideInterestInfo }) {
-    const [date, setDate] = useState('on October 10, 2022.');
+function InterestSummary({ userInterested, rideLocation, rideDates }) {
+    const [date, setDate] = useState();
+
+    useEffect(() => {
+        let dateDescription = makeDateDescription(rideDates);
+        if (dateDescription?.includes('-')) {
+            setDate('on ' + dateDescription);
+        } else {
+            setDate('during the period ' + dateDescription);
+        }
+    }, [rideDates])
 
     return (
         <div>
-            <p>Request by {rideInterestInfo.user_name} to join your trip to {rideInterestInfo.location} {date}</p>
+            <p>Request by {userInterested} to join your trip to {rideLocation} {date}</p>
         </div>
     )
 }

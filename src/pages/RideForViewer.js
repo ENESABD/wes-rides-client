@@ -24,8 +24,7 @@ function RideForViewer({ rideInfo, id }) {
       <RideInfo
         editable={false}
         rideLocation={rideInfo.location}
-        rideDates={{start_date: rideInfo.start_date, 
-                    end_date: rideInfo.end_date}}
+        rideDates={[rideInfo.start_date, rideInfo.end_date]}
         rideComments={rideInfo.additional_comments}
         rideTags={{has_car: rideInfo.has_car, 
                   wants_car: rideInfo.wants_car, 

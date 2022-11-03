@@ -43,8 +43,7 @@ function RideForOwner({ rideInfo, id }) {
         id={id}
         editable={editable}
         rideLocation={currentRideInfo?.location}
-        rideDates={{start_date: currentRideInfo?.start_date, 
-                    end_date: currentRideInfo?.end_date}}
+        rideDates={[currentRideInfo?.start_date, currentRideInfo?.end_date]}
         rideComments={currentRideInfo?.additional_comments}
         rideTags={{has_car: currentRideInfo?.has_car, 
                   wants_car: currentRideInfo?.wants_car, 
@@ -56,8 +55,14 @@ function RideForOwner({ rideInfo, id }) {
         rideStatus={rideStatus} 
         associatedRideInterests={currentRideInfo?.associated_ride_interests}
       />
-      <DeleteRide />
-      <Link to={-1}>Go back</Link>
+
+      {(rideStatus === 'pending' ||
+      rideStatus === 'awaiting_confirmation' ||
+      rideStatus === 'failed') &&
+      
+      <DeleteRide id={id}/>
+      }
+      <Link to={'/my-rides'}>Go to my rides</Link>
     </div>
   )
 }

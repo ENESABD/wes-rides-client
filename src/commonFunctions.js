@@ -28,6 +28,27 @@ export const captureRideTags = ({event}) => {
     return tags;
 }
 
+export const makeDateReadable = (date) => {
+    let dateObject = new Date(date);
+    let formatted_date = dateObject.toDateString();
+    return formatted_date;
+}
+
+export const makeDateDescription = (updatedRideDates) => {
+    console.log(updatedRideDates);
+    let [start_date, end_date] = updatedRideDates;
+    if (start_date && end_date) {
+        if (start_date === end_date) {
+            let exact_date = makeDateReadable(start_date);
+            return exact_date;
+        } else {
+            let formatted_start_date = makeDateReadable(start_date);
+            let formatted_end_date = makeDateReadable(end_date);
+            return formatted_start_date + ' - ' + formatted_end_date;
+        }
+    }
+}
+
 export const convertDateFormat = (date) => date.substring(5,10) + '-' + date.substring(2,4);
 
 export const isFutureDate = (date) => {
@@ -40,6 +61,7 @@ export const isFutureDate = (date) => {
 
     return true;
 }
+
 
 const startIsBeforeEnd = (start_date, end_date) => {
     if ((new Date(end_date) < new Date(start_date))) {

@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Edit from '../CommonComponents/Edit';
 import inputObjects from '../../inputs.json';
-import { formatRideDates } from '../../commonFunctions';
+import { formatRideDates, makeDateDescription } from '../../commonFunctions';
 import ChooseTags from './ChooseTags';
 
 function RideInfo({ id, editable, rideLocation, rideDates, rideTags, rideComments, noChangeWithSideEffect, captureRideTagsWithSideEffect }) {
@@ -10,34 +10,17 @@ function RideInfo({ id, editable, rideLocation, rideDates, rideTags, rideComment
     const formatRideDatesWithSideEffect = ({event}) => {
         let updatedRideDates = formatRideDates({event});
         if (typeof(updatedRideDates) !== "string") {
-            updateDate(updatedRideDates);
+            let { start_date, end_date } = updatedRideDates;
+            setDate(makeDateDescription([start_date, end_date]));
         }
         return updatedRideDates;
     }
-
-    const makeDateReadable = (date) => {
-        let dateObject = new Date(date);
-        let formatted_date = dateObject.toDateString();
-        return formatted_date;
-    }
     
-    const updateDate = useCallback((updatedRideDates) => {
-        let {start_date, end_date} = updatedRideDates;
-        if (start_date && end_date) {
-            if (start_date === end_date) {
-                let exact_date = makeDateReadable(start_date);
-                setDate(exact_date);
-            } else {
-                let formatted_start_date = makeDateReadable(start_date);
-                let formatted_end_date = makeDateReadable(end_date);
-                setDate(formatted_start_date + ' - ' + formatted_end_date);
-            }
-        }
-    }, [])
+    
 
     useEffect(() => {
-        updateDate(rideDates);
-    }, [rideDates, updateDate])
+        setDate(makeDateDescription(rideDates))
+    }, [rideDates])
     
     
 

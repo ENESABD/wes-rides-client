@@ -7,7 +7,7 @@ function NewRide() {
     <div>
       <NewRideForm/>
       <br/>
-      <Link to={-1}>Go back</Link>
+      <Link to={'/my-rides'}>Go to my rides</Link>
     </div>
   )
 }

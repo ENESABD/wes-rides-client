@@ -1,27 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function InterestInRide({ ride_interest }) {
+function InterestInRide({ rideInterest }) {
     return (
-        <li key={ride_interest.id}>
+        <li key={rideInterest.ride_interest_id}>
 
             <p>You have
 
-            {ride_interest.status === "rejected" ? 
+            {rideInterest.status === "rejected" ? 
                 <> rejected </>
             : null}
 
-            {ride_interest.status === "accepted" ? 
+            {rideInterest.status === "accepted" ? 
                 <> confirmed </>
             : null}
 
-            {ride_interest.status === "awaiting_confirmation" ? 
+            {rideInterest.status === "awaiting_confirmation" ? 
                 <> not taken any action regarding </>
             : null}
             
-            {ride_interest.user_name}'s request to join this ride.</p>
+            {rideInterest.user_name}'s request to join this ride.</p>
 
-            <Link to={`/ride-interest/${ride_interest.id}`}>See more</Link>
+            <Link to={`/ride-interest/${rideInterest.ride_interest_id}`}>See more</Link>
 
         </li>
     )

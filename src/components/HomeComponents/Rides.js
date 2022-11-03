@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
 import RideSearch from './RideSearch';
 import RideList from '../CommonComponents/RideList';
+import useAxios from '../../hooks/AxiosAbstraction/useAxios';
 
 function Rides() {
 
-    const [rides, setRides] = useState([
-        {id: 1, location: "Boston", start_date: "10-09-2022", end_date: "10-09-2022"},
-        {id: 2, location: "Foston", start_date: "11-09-2022", end_date: "15-09-2022"}
-      ]);
+    const [tags, setTags] = useState({
+        has_car: true,
+        wants_car: true,
+        wants_uber: true
+    })
+    const [searchWord, setSearchWord] = useState("");
+    const [rides, errorMessage, isLoading] = useAxios('GET', `/rides?has_car=${tags.wants_car}` 
+                                                            + `&wants_car=${tags.has_car}`
+                                                            + `&wants_uber=${tags.wants_uber}`
+                                                            + `&search_word=${searchWord}`);
+
 
 
     return (
         <div>
-            <RideSearch/>
-            <RideList rides={rides}/>
+            <RideSearch setSearchWord={setSearchWord} tags={tags} setTags={setTags}/>
+            {isLoading ? <p>Loading...</p> :
+            errorMessage ? <p>{errorMessage}</p> :
+            rides && <RideList rides={rides.rides}/>
+            }
         </div>
     )
 }

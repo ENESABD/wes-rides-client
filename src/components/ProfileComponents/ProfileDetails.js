@@ -3,7 +3,7 @@ import Edit from '../CommonComponents/Edit';
 import inputObjects from '../../inputs.json';
 import { passwordConfirmationCheck } from '../../commonFunctions';
 
-function ProfileDetails({ editable, userData }) {
+function ProfileDetails({ editable, userData, onlyContactInfo }) {
 
     const noChangeWithSideEffect = ({values}) => {
         const value_key = Object.keys(values)[0];
@@ -19,7 +19,8 @@ function ProfileDetails({ editable, userData }) {
         setCurrentUserData(userData);
     }, [userData])
     
-    const rows = ['name', 'phone', 'snapchat', 'instagram', 'facebook'];
+    const rows = onlyContactInfo ? ['phone', 'snapchat', 'instagram', 'facebook']
+                : ['name', 'phone', 'snapchat', 'instagram', 'facebook'];
 
     return (
         <>

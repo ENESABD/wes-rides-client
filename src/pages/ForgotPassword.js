@@ -7,7 +7,7 @@ function ForgotPassword() {
     <div>
       <ResetRequestForm/>
       <br/>
-      <Link to={-1}>Go back</Link>
+      <Link to={'/login'}>Go to the login page</Link>
     </div>
   )
 }

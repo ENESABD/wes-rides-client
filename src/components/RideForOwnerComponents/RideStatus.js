@@ -8,7 +8,7 @@ function RideStatus({ rideStatus, associatedRideInterests }) {
     return <p>This ride has failed.</p>
   }
 
-  if (rideStatus === "pending") {
+  if (associatedRideInterests?.length === 0) {
     return <p>No one has shown interest in this ride.</p>
   }
 
@@ -16,8 +16,8 @@ function RideStatus({ rideStatus, associatedRideInterests }) {
   return (
     <div>
       <ul>
-        {associatedRideInterests.map((ride_interest) => {
-          return <InterestInRide ride_interest={ride_interest}/>
+        {associatedRideInterests?.map((rideInterest) => {
+          return <InterestInRide rideInterest={rideInterest}/>
         })}
       </ul>
     </div>

@@ -3,6 +3,7 @@ import InputItem from './InputItem';
 import inputObjects from '../../inputs.json';
 
 function ChooseDate({ values, prevValues, handleChange }) {
+
     return (
     <>
         <label htmlFor="date_type">Please choose one of the options:<span aria-label="required">*</span></label>
@@ -32,13 +33,13 @@ function ChooseDate({ values, prevValues, handleChange }) {
             <InputItem  //placeholder="yyyy-mm-dd"
                 inputObject={inputObjects.start_date}
                 value={values.start_date}
-                prevValue={prevValues?.start_date.substring(0,10) || values.exact_date}
+                prevValue={(prevValues && prevValues[0].substring(0,10)) || values.exact_date}
                 handleChange={handleChange}
             />
             <InputItem 
                 inputObject={inputObjects.end_date}
                 value={values.end_date}
-                prevValue={prevValues?.end_date.substring(0,10) || values.exact_date}
+                prevValue={(prevValues && prevValues[1].substring(0,10)) || values.exact_date}
                 handleChange={handleChange}
             />
         </>}
@@ -47,7 +48,7 @@ function ChooseDate({ values, prevValues, handleChange }) {
             <InputItem 
                 inputObject={inputObjects.exact_date}
                 value={values.exact_date}
-                prevValue={prevValues?.start_date.substring(0,10) || values.start_date}
+                prevValue={(prevValues && prevValues[0].substring(0,10)) || values.start_date}
                 handleChange={handleChange}
             />
         }
