@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useAxios from './AxiosAbstraction/useAxios';
+import useAxios from './useAxios';
 import useForm from './useForm';
 
 function useFormWithRequest(requestMethod, requestUrl, formatValues, jwt) {

@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import InterestAction from '../components/RideInterestComponents.js/InterestAction';
 import InterestSummary from '../components/RideInterestComponents.js/InterestSummary';
 import ProfileDetails from '../components/ProfileComponents/ProfileDetails';
-import useAxios from '../hooks/AxiosAbstraction/useAxios';
+import useAxios from '../hooks/useAxios';
 
 function RideInterest() {
   

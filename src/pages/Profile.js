@@ -1,7 +1,7 @@
 import React from 'react';
 import LogOut from '../components/ProfileComponents/LogOut';
 import ProfileDetails from '../components/ProfileComponents/ProfileDetails';
-import useAxios from '../hooks/AxiosAbstraction/useAxios';
+import useAxios from '../hooks/useAxios';
 
 function Profile({ setIsAuthenticated }) {
 

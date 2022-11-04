@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import RideSearch from './RideSearch';
 import RideList from '../CommonComponents/RideList';
-import useAxios from '../../hooks/AxiosAbstraction/useAxios';
+import useAxios from '../../hooks/useAxios';
 
 function Rides() {
 

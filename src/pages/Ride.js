@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import useAxios from '../hooks/AxiosAbstraction/useAxios';
+import useAxios from '../hooks/useAxios';
 import RideForOwner from './RideForOwner';
 import RideForViewer from './RideForViewer';
 

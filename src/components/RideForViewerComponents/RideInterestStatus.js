@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { isFutureDate } from '../../commonFunctions';
-import useAxios from '../../hooks/AxiosAbstraction/useAxios';
+import useAxios from '../../hooks/useAxios';
 
 function RideInterestStatus({ rideInterest, rideStartDate, id }) {
 

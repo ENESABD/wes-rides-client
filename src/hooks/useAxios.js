@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 
-axios.defaults.baseURL = process.env.SERVER_HOST || 'http://192.168.0.3:8000';
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_HOST || 'http://192.168.0.3:8000';
 axios.defaults.headers = {
     'Cache-Control': 'no-cache',
     'Pragma': 'no-cache',

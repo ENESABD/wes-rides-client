@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RideList from '../components/CommonComponents/RideList';
-import useAxios from '../hooks/AxiosAbstraction/useAxios';
+import useAxios from '../hooks/useAxios';
 
 function MyRides() {
 

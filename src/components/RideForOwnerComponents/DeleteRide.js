@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAxios from '../../hooks/AxiosAbstraction/useAxios';
+import useAxios from '../../hooks/useAxios';
 
 function DeleteRide({ id }) {
 
