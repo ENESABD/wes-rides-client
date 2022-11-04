@@ -21,6 +21,11 @@ function Rides() {
     return (
         <div>
             <RideSearch setSearchWord={setSearchWord} tags={tags} setTags={setTags}/>
+            
+            <br/>
+
+            <p>(Your rides won't show up here. Go to my rides to see your rides.)</p>
+
             {isLoading ? <p>Loading...</p> :
             errorMessage ? <p>{errorMessage}</p> :
             rides && <RideList rides={rides.rides}/>
