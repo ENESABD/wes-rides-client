@@ -3,6 +3,8 @@ import { Navigate } from 'react-router-dom';
 import { passwordConfirmationCheck } from '../../commonFunctions';
 import useFormWithRequest from '../../hooks/useFormWithRequest';
 import ChangePassword from '../CommonComponents/ChangePassword';
+import ErrorMessage from '../CommonComponents/ErrorMessage';
+import Loading from '../CommonComponents/Loading';
 
 function PasswordResetForm({ jwt }) {
     const [values, handleChange, handleSubmit, response, errorMessage, isLoading] = 
@@ -15,10 +17,10 @@ function PasswordResetForm({ jwt }) {
             <form onSubmit={handleSubmit}>
                 <ChangePassword values={values} handleChange={handleChange} isReset={true}/>
 
-                {errorMessage ? <p>{errorMessage}<br/></p> : null}
-                {isLoading ? <p>Loading...<br/></p> : null}
+                <ErrorMessage error={errorMessage}/>
+                <Loading loading={isLoading}/>
 
-                <button type="submit">Set the new password</button>
+                <button type="submit" className='btn btn-primary'>Set the new password</button>
             </form>
         }</>
     )

@@ -3,6 +3,8 @@ import { noChange } from '../../commonFunctions';
 import useFormWithRequest from '../../hooks/useFormWithRequest';
 import InputItem from '../CommonComponents/InputItem';
 import inputObjects from '../../inputs.json';
+import ErrorMessage from '../CommonComponents/ErrorMessage';
+import Loading from '../CommonComponents/Loading';
 
 function LoginForm({ setIsAuthenticated }) {
     const [values, handleChange, handleSubmit, response, errorMessage, requestInProcess] = 
@@ -23,7 +25,6 @@ function LoginForm({ setIsAuthenticated }) {
             <h1>Login Form</h1>
             <p>Please enter your registered email and your WesRides password to login.</p>
         
-            <br/>
 
             <InputItem
                 inputObject={inputObjects.email}
@@ -31,7 +32,6 @@ function LoginForm({ setIsAuthenticated }) {
                 handleChange={handleChange}
             />
 
-            <br/>
 
             <InputItem
                 inputObject={inputObjects.password}
@@ -39,12 +39,11 @@ function LoginForm({ setIsAuthenticated }) {
                 handleChange={handleChange}
             />
 
-            <br/>
 
-            {errorMessage ? <p>{errorMessage}<br/></p> : null}
-            {requestInProcess ? <p>Loading...<br/></p> : null}
+            <ErrorMessage error={errorMessage}/>
+            <Loading loading={requestInProcess}/>
 
-            <button type="submit">Login</button>
+            <button type="submit" className='btn btn-primary'>Login</button>
         </form>
     )
 }

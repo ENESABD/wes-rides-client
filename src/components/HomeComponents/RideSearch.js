@@ -10,10 +10,8 @@ function RideSearch({ setSearchWord, tags, setTags }) {
     return (
         <div>
             <input type="text" id="search-ride" placeholder='Search a ride...' 
-                onChange={(e) => setSearchWord(e.target.value)}/>
-
-            <br/>
-            <br/>
+                onChange={(e) => setSearchWord(e.target.value)}
+                className='form-control'/>
             
             <ChooseTags tags={tags} isDisabled={false} handleChange={toggleTags}/>
         </div>

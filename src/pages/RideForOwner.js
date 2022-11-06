@@ -62,7 +62,7 @@ function RideForOwner({ rideInfo, id }) {
       
       <DeleteRide id={id}/>
       }
-      <Link to={'/my-rides'}>Go to my rides</Link>
+      <Link to={'/my-rides'} className='btn btn-outline-secondary mt-3'>Go to my rides</Link>
     </div>
   )
 }

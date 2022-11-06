@@ -25,10 +25,10 @@ function RideInfo({ id, editable, rideLocation, rideDates, rideTags, rideComment
     
 
     return (
-        <section>
+        <section className='border p-3'>
             <h2>Information about the ride</h2>
 
-            <div>Destination: {rideLocation}</div>
+            <div className='my-2'><b>Destination</b>: {rideLocation}</div>
             {editable &&
                 <Edit 
                     inputObject={inputObjects.location}
@@ -38,7 +38,7 @@ function RideInfo({ id, editable, rideLocation, rideDates, rideTags, rideComment
                     formattingFunction={noChangeWithSideEffect}
                 />  
             }
-            <div>Date(s): {date}</div>
+            <div className='my-2'><b>Date(s)</b>: {date}</div>
             {editable &&
                 <Edit 
                     prevValue={rideDates}  
@@ -48,7 +48,7 @@ function RideInfo({ id, editable, rideLocation, rideDates, rideTags, rideComment
                 />  
             } 
 
-            <div>Tag(s): </div>
+            <div className='my-2'><b>Saved tag choices</b>: </div>
             <ChooseTags tags={rideTags} isDisabled={true}/>
             {editable &&
                 <Edit 
@@ -59,7 +59,7 @@ function RideInfo({ id, editable, rideLocation, rideDates, rideTags, rideComment
                 /> 
             }       
             
-            {rideComments ? <div>Notes: {rideComments}</div> : <div>Notes: None</div>}
+            {rideComments ? <div className='my-2'><b>Notes</b>: {rideComments}</div> : <div className='my-2'><b>Notes:</b> None</div>}
             {editable &&
                 <Edit 
                     inputObject={inputObjects.additional_comments}

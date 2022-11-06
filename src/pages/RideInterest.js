@@ -4,6 +4,8 @@ import InterestAction from '../components/RideInterestComponents.js/InterestActi
 import InterestSummary from '../components/RideInterestComponents.js/InterestSummary';
 import ProfileDetails from '../components/ProfileComponents/ProfileDetails';
 import useAxios from '../hooks/useAxios';
+import Loading from '../components/CommonComponents/Loading';
+import ErrorMessage from '../components/CommonComponents/ErrorMessage';
 
 function RideInterest() {
   
@@ -21,9 +23,9 @@ function RideInterest() {
 
 
   return (
-    <div>
-      {errorMessage && <p>{errorMessage}</p>}
-      {isLoading && <p>Loading...</p>}
+    <main className='p-2'>
+      <ErrorMessage error={errorMessage}/>
+      <Loading loading={isLoading}/>
 
       <InterestSummary 
         userInterested={rideInterestInfo?.user_name}
@@ -36,8 +38,9 @@ function RideInterest() {
 
       <InterestAction status={rideInterestInfo?.status} rideInterestId={id}/>
 
-      <Link to={`/ride/${rideInterestInfo?.ride_id}`}>Go to the related ride</Link>
-    </div>
+      <Link to={`/ride/${rideInterestInfo?.ride_id}`} className='btn btn-outline-secondary mt-3'>
+        Go to the related ride</Link>
+    </main>
   )
 }
 

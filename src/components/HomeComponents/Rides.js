@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RideSearch from './RideSearch';
 import RideList from '../CommonComponents/RideList';
 import useAxios from '../../hooks/useAxios';
+import Loading from '../CommonComponents/Loading';
 
 function Rides() {
 
@@ -24,10 +25,10 @@ function Rides() {
             
             <br/>
 
-            <p>(Your rides won't show up here. Go to my rides to see your rides.)</p>
+            <p>(Your rides won't appear here. Go to my rides to see your rides.)</p>
 
-            {isLoading ? <p>Loading...</p> :
-            errorMessage ? <p>{errorMessage}</p> :
+            {isLoading ? <Loading loading={true}/> :
+            errorMessage ? {errorMessage} :
             rides && <RideList rides={rides.rides}/>
             }
         </div>

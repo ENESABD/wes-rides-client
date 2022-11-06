@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 function EmailSent() {
   return (
-    <div>
+    <main className='p-2'>
       <div>A link has been emailed.</div>
-      <Link to="/login">Login</Link>
-    </div>
+      <Link to="/login" className='btn btn-outline-secondary mt-3'>Login</Link>
+    </main>
   )
 }
 

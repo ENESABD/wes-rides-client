@@ -6,27 +6,27 @@ function ChooseDate({ values, prevValues, handleChange }) {
 
     return (
     <>
-        <label htmlFor="date_type">Please choose one of the options:<span aria-label="required">*</span></label>
-        <br/>
-        <br/>
-        
-        <label htmlFor="interval">
-            I am flexible within a time interval.
-        </label>
-        <input id="interval" type="radio" name="date_type" value="interval" 
-            checked={values.date_type === "interval"} required={true} onChange={handleChange}/>
+        <div className='my-3'>
+            <p>Please choose one of the options below:<span aria-label="required">*</span></p>
+            
+            <div className='form-check'>
+                <input id="interval" type="radio" name="date_type" value="interval" 
+                    checked={values.date_type === "interval"} required={true} onChange={handleChange}
+                    className='form-check-input'/>
+                <label htmlFor="interval" className='form-check-label'>
+                    I am flexible within a time interval.
+                </label>
+            </div>
 
-        <br/>
-        <br/>
-
-        <label htmlFor="exact">
-            I have an exact date in mind.
-        </label>
-        <input id="exact" type="radio" name="date_type" value="exact" 
-            checked={values.date_type === "exact"} required={true} onChange={handleChange}/>
-
-        <br/>
-        <br/>
+            <div className='form-check'>
+                <input id="exact" type="radio" name="date_type" value="exact" 
+                    checked={values.date_type === "exact"} required={true} onChange={handleChange}
+                    className='form-check-input'/>
+                <label htmlFor="exact" className='form-check-label'>
+                    I have an exact date in mind.
+                </label>
+            </div>
+        </div>
 
         {values.date_type === "interval" &&
         <>

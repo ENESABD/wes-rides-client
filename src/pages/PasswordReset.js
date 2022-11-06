@@ -1,5 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import ErrorMessage from '../components/CommonComponents/ErrorMessage';
+import Loading from '../components/CommonComponents/Loading';
 import PasswordResetForm from '../components/PasswordResetComponents/PasswordResetForm';
 import useVerify from '../hooks/useVerify';
 
@@ -11,17 +13,17 @@ function PasswordReset() {
   console.log(isValid);
 
   if (isValid === undefined) {
-      return <h1>Loading...</h1>
+      return <Loading loading={true} />
   }
 
   return (
-    <div>
-      {!isValid ? <p>Invalid Link</p> : 
+    <main className='p-2'>
+      {!isValid ? <ErrorMessage error={'Invalid link'}/> : 
       <>
         <PasswordResetForm jwt={jwt} />
         <p>If your password is successfully changed, you will be redirected to the login page.</p>
       </>}
-    </div>
+    </main>
   )
 }
 

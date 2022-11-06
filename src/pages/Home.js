@@ -4,10 +4,10 @@ import Rides from '../components/HomeComponents/Rides';
 
 function Home() {
     return (
-        <div>
-            <Link to="/new-ride">Post a ride!</Link>
+        <main className='p-2'>
+            <Link to="/new-ride" className='btn btn-primary my-3'>Post a ride!</Link>
             <Rides/>
-        </div>
+        </main>
     )
 }
 

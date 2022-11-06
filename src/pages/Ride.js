@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import Loading from '../components/CommonComponents/Loading';
 import useAxios from '../hooks/useAxios';
 import RideForOwner from './RideForOwner';
 import RideForViewer from './RideForViewer';
@@ -29,12 +30,12 @@ function Ride() {
   }, [rideInfo])
 
   return (
-    <div>
+    <main className='p-2'>
       {errorMessage ? <Navigate to="/not-found" replace={true} /> :
-      (isLoading || !rideInfo) ? <p>Loading...</p> :
+      (isLoading || !rideInfo) ? <Loading loading={true} /> :
       isOwner ? <RideForOwner rideInfo={rideInfo} id={id}/> : 
       <RideForViewer rideInfo={rideInfo} id={id}/>}
-    </div>
+    </main>
   )
 }
 

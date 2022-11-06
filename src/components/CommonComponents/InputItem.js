@@ -4,8 +4,8 @@ function InputItem({ inputObject, prevValue, value, noLabel, handleChange }) {
     return (
     <>
         {!noLabel &&
-        <label htmlFor={inputObject.name}>
-            {inputObject.label} {inputObject.required && <span aria-label="required">*</span>}:
+        <label htmlFor={inputObject.name} className='form-label'>
+            {inputObject.label}{inputObject.required && <span aria-label="required">*</span>}
         </label>
         }
 
@@ -21,6 +21,8 @@ function InputItem({ inputObject, prevValue, value, noLabel, handleChange }) {
 
             value={(value !== undefined) ? value : prevValue || ""} 
             onChange={handleChange}
+            
+            className='form-control mb-2'
         />
     </>
   )

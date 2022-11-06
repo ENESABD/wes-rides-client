@@ -4,6 +4,8 @@ import { noChange } from '../../commonFunctions';
 import useFormWithRequest from '../../hooks/useFormWithRequest';
 import InputItem from '../CommonComponents/InputItem';
 import inputObjects from '../../inputs.json'
+import ErrorMessage from '../CommonComponents/ErrorMessage';
+import Loading from '../CommonComponents/Loading';
 
 function ResetRequestForm() {
     
@@ -17,8 +19,6 @@ function ResetRequestForm() {
             <form onSubmit={handleSubmit}>
                 <p>Please enter your registered email and click on the button below. 
                     You will then be emailed a password reset link.</p>
-            
-                <br/>
 
                 <InputItem
                     inputObject={inputObjects.email}
@@ -26,12 +26,10 @@ function ResetRequestForm() {
                     handleChange={handleChange}
                 />
 
-                <br/>
+                <ErrorMessage error={errorMessage}/>
+                <Loading loading={requestInProcess}/>
 
-                {errorMessage && <p>{errorMessage}<br/></p>} 
-                {requestInProcess && <p>Loading...<br/></p>} 
-
-                <button type="submit">Reset password</button>
+                <button type="submit" className='btn btn-primary'>Reset password</button>
             </form>
         }</>
     )

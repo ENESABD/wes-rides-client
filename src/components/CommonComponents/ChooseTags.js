@@ -6,21 +6,19 @@ function ChooseTags({ tags, isDisabled, handleChange }) {
                     ["wants_car", "I am willing to join someone who has a car"]];
     
     return (
-        <>
-
+        <ul className='form-check mb-3'>
             {tagInputs.map((tagInput) => {
                 let [name, label] = tagInput;
                 return (
-                <li key={name}>
+                <li key={name} style={{listStyle: 'none'}} className='mt-3'>
                     <input type="checkbox" id={name} name={name} defaultChecked={!tags ? null : tags[name]} 
-                        disabled={isDisabled} onChange={handleChange}/>
-                    <label htmlFor={name}>{label}</label>
-                    <br/>
-                    <br/>
+                        disabled={isDisabled} onChange={handleChange} 
+                        className='form-check-input'/>
+                    <label htmlFor={name} className='form-check-label'>{label}</label>
                 </li>
                 )
             })}
-        </>
+        </ul>
     )
 }
 
