@@ -3,6 +3,7 @@ import RideSearch from './RideSearch';
 import RideList from '../CommonComponents/RideList';
 import useAxios from '../../hooks/useAxios';
 import Loading from '../CommonComponents/Loading';
+import ErrorMessage from '../CommonComponents/ErrorMessage';
 
 function Rides() {
 
@@ -28,7 +29,7 @@ function Rides() {
             <p>(Your rides won't appear here. Go to my rides to see your rides.)</p>
 
             {isLoading ? <Loading loading={true}/> :
-            errorMessage ? {errorMessage} :
+            errorMessage ? <ErrorMessage error={errorMessage} /> :
             rides && <RideList rides={rides.rides}/>
             }
         </div>
