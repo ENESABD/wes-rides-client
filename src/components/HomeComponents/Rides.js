@@ -26,7 +26,7 @@ function Rides() {
             
             <br/>
 
-            <p>(Your rides won't appear here. Go to my rides to see your rides.)</p>
+            <p>(Your rides won't appear here. Go to "My Rides" on the top/in the navigation bar to see your rides.)</p>
 
             {isLoading ? <Loading loading={true}/> :
             errorMessage ? <ErrorMessage error={errorMessage} /> :

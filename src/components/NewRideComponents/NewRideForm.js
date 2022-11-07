@@ -34,7 +34,7 @@ function NewRideForm() {
                     <li className='list-group-item'>Required fields are followed by <strong><span aria-label="required">*</span></strong>.</li>
                     <li className='list-group-item'>Location can only contain letters, numbers, spaces, or commas,
                         and must be limited to 50 characters.</li>
-                    <li className='list-group-item'>At least one filter must be true.</li>
+                    <li className='list-group-item'>At least one tag must be selected.</li>
                     <li className='list-group-item'>Additional comments must be limited to 1500 characters.</li>
                 </ul>
                 

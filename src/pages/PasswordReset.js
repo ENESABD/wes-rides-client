@@ -10,8 +10,6 @@ function PasswordReset() {
 
   const [isValid] = useVerify(jwt);
 
-  console.log(isValid);
-
   if (isValid === undefined) {
       return <Loading loading={true} />
   }
