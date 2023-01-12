@@ -3,7 +3,9 @@ import useFormWithRequest from '../../hooks/useFormWithRequest';
 import ChangePassword from './ChangePassword';
 import ChooseDate from './ChooseDate';
 import ChooseTags from './ChooseTags';
+import ErrorMessage from './ErrorMessage';
 import InputItem from './InputItem';
+import Loading from './Loading';
 
 function Edit({ inputObject, prevValue, formType, requestUrl, formattingFunction }) {
     const [values, handleChange, handleSubmit, response, errorMessage, requestInProcess] = 
@@ -23,7 +25,7 @@ function Edit({ inputObject, prevValue, formType, requestUrl, formattingFunction
 
     return (
         <div>
-            <button onClick={handleOpen}>
+            <button onClick={handleOpen} className='btn btn-success my-2'>
                 {isOpened ? <div>Cancel</div> : 
                 (formType === 'password-update') ? <div>Change Password</div> :
                 <div>Edit</div>}
@@ -63,9 +65,9 @@ function Edit({ inputObject, prevValue, formType, requestUrl, formattingFunction
                     />
                 }
 
-                <button type="submit">Submit</button>
-                {errorMessage ? <p>{errorMessage}<br/></p> : null}
-                {requestInProcess ? <p>Loading<br/></p> : null}
+                <button type="submit" className='btn btn-primary mb-2'>Submit</button>
+                <ErrorMessage error={errorMessage}/>
+                <Loading loading={requestInProcess}/>
             </form>
             : null}
         </div>

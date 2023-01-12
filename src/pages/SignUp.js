@@ -4,11 +4,10 @@ import SignUpForm from '../components/SignUpComponents/SignUpForm';
 
 function SignUp() {
     return (
-        <div>
+        <main className='p-2'>
             <SignUpForm/>
-            <br/>
-            <Link to="/login">Already have an account?</Link>
-        </div>
+            <Link to="/login" className='btn btn-outline-secondary mt-3'>Already have an account?</Link>
+        </main>
     )
 }
 

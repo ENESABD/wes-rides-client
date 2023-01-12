@@ -22,7 +22,7 @@ export const captureRideTags = ({event}) => {
     let { has_car, wants_uber, wants_car } = tags;
 
     if (!has_car && !wants_uber && !wants_car) {
-        return "At least one tag must be true";
+        return "At least one tag must be selected";
     }
 
     return tags;
@@ -35,7 +35,6 @@ export const makeDateReadable = (date) => {
 }
 
 export const makeDateDescription = (updatedRideDates) => {
-    console.log(updatedRideDates);
     let [start_date, end_date] = updatedRideDates;
     if (start_date && end_date) {
         if (start_date === end_date) {

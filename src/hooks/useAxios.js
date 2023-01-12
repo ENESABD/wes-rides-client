@@ -33,23 +33,23 @@ function useAxios(requestMethod, requestUrl, requestBody, jwt) {
     }, [requestUrl, requestMethod, requestBody, current_jwt]);
     
     useEffect(() => {
-        console.log('Mounted/Updated')
+        //console.log('Mounted/Updated')
         let isMounted = true;
         const controller = new AbortController();
         
         const makeRequest = async (params) => {
             setIsLoading(true);
             try {
-                console.log(params);
+                //console.log(params);
                 const res = await axios.request({...params, signal: controller.signal});
                 if (isMounted) {
-                    console.log(res);
+                    //console.log(res);
                     setResponse(res.data);
                     setError(null);
                 }
             } catch(err) {
                 if (isMounted) {
-                    console.log(err);
+                    //console.log(err);
                     setError(err.response.data.error);
                     setResponse(null);
                 }
@@ -65,7 +65,7 @@ function useAxios(requestMethod, requestUrl, requestBody, jwt) {
         }
 
         const cleanUp = () => {
-            console.log('Unmounted/params changed')
+            //console.log('Unmounted/params changed')
             isMounted = false;
             controller.abort();
         }

@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/wes-rides-client/static/css/main.d05a0238.css",
-    "main.js": "/wes-rides-client/static/js/main.3e689509.js",
+    "main.css": "/wes-rides-client/static/css/main.cf546377.css",
+    "main.js": "/wes-rides-client/static/js/main.134cb9e4.js",
     "index.html": "/wes-rides-client/index.html",
-    "main.d05a0238.css.map": "/wes-rides-client/static/css/main.d05a0238.css.map",
-    "main.3e689509.js.map": "/wes-rides-client/static/js/main.3e689509.js.map"
+    "main.cf546377.css.map": "/wes-rides-client/static/css/main.cf546377.css.map",
+    "main.134cb9e4.js.map": "/wes-rides-client/static/js/main.134cb9e4.js.map"
   },
   "entrypoints": [
-    "static/css/main.d05a0238.css",
-    "static/js/main.3e689509.js"
+    "static/css/main.cf546377.css",
+    "static/js/main.134cb9e4.js"
   ]
 }

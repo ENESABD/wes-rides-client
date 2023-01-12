@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { isFutureDate } from '../../commonFunctions';
 import useAxios from '../../hooks/useAxios';
+import ErrorMessage from '../CommonComponents/ErrorMessage';
+import Loading from '../CommonComponents/Loading';
 
 function RideInterestStatus({ rideInterest, rideStartDate, id }) {
 
@@ -39,13 +41,13 @@ function RideInterestStatus({ rideInterest, rideStartDate, id }) {
   return (
     <div>
       {!rideInterest.status &&
-        <button onClick={handleShowInterest}>Indicate interest</button>
+        <button onClick={handleShowInterest} className='btn btn-success'>Indicate interest</button>
       }
 
-      {rideInterest.status === 'awaiting_confirmation' &&
+      {rideInterest.status === 'awaiting_owner_decision' &&
       <>
         <p>You have made a request to join this ride and it is awaiting confirmation by the owner of the post.</p>
-        <button onClick={handleDeleteInterest}>Cancel request</button>
+        <button onClick={handleDeleteInterest} className='btn btn-warning'>Cancel request</button>
       </>
       }
 
@@ -63,8 +65,8 @@ function RideInterestStatus({ rideInterest, rideStartDate, id }) {
           So, they hopefully had this ride with you.</p>
       }
 
-      {requestInProcess && <p>Loading...</p>}
-      {errorMessage && <p>{errorMessage}</p>}
+      <ErrorMessage error={errorMessage}/>
+      <Loading loading={requestInProcess}/>
     </div>
   )
 }

@@ -3,14 +3,15 @@ import { NavLink } from 'react-router-dom';
 
 function Navbar2() {
     return (
-      <div>
-            <NavLink to="/">Wesrides</NavLink>
-            <br/>
-            <br/>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/my-rides">My Rides</NavLink>
-            <NavLink to="/profile">Profile</NavLink>
-        </div>
+        <nav className='navbar navbar-dark bg-dark'>
+            <NavLink to="/" className="navbar-brand mx-2">WesRides</NavLink>
+            
+            <div className='nav'>
+                <NavLink to="/" className="nav-link">Home</NavLink>            
+                <NavLink to="/my-rides" className="nav-link">My Rides</NavLink>
+                <NavLink to="/profile" className="nav-link">Profile</NavLink>
+            </div>
+        </nav>
     )
 }
 

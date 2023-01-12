@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
+import ErrorMessage from '../CommonComponents/ErrorMessage';
+import Loading from '../CommonComponents/Loading';
 
 function DeleteRide({ id }) {
 
@@ -22,15 +24,19 @@ function DeleteRide({ id }) {
 
     return (
         <div>
-            {errorMessage && <p>{errorMessage}</p>}
-            {requestInProcess && <p>Loading...</p>}
+            <ErrorMessage error={errorMessage}/>
+            <Loading loading={requestInProcess}/>
             
-            <button onClick={() => setConfirmDeletion(true)}>Delete this ride</button>
+            <button onClick={() => setConfirmDeletion(true)} className='btn btn-warning'>
+                Delete this ride</button>
             {confirmDeletion &&
             <div>
-                <p>Are you sure?</p>
-                <button onClick={handleClick}>Yes</button>
-                <button onClick={() => setConfirmDeletion(false)}>No</button>
+                <p className='mt-2'>Are you sure you want to delete this ride?</p>
+                <button onClick={handleClick} className='btn btn-danger'>
+                    Yes</button>
+                <button onClick={() => setConfirmDeletion(false)} 
+                        className='btn btn-secondary ms-3'>
+                    No</button>
             </div>
             }
         </div>

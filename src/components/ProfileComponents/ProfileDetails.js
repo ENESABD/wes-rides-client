@@ -24,15 +24,15 @@ function ProfileDetails({ editable, userData, onlyContactInfo }) {
 
     return (
         <>
-            <ul>
-                <li>Email: {currentUserData?.user_email}</li>
+            <ul style={{listStyle: 'none'}} className='list-group my-4'>
+                <li className='list-group-item'><b>Email</b>: {currentUserData?.user_email}</li>
                 {rows.map((row) => {
                     let inputObject = inputObjects[row];
                     let label = inputObject.label;
                     let current_value = currentUserData?.[inputObject.value_label];
                 
-                    return <li key={label}>
-                        <div>{label}: {current_value || 'Not provided'}</div>
+                    return <li key={label} className='list-group-item'>
+                        <div><b>{label}</b>: {current_value || 'Not provided'}</div>
                         {editable && 
                         <Edit 
                             inputObject={inputObject}
@@ -44,11 +44,13 @@ function ProfileDetails({ editable, userData, onlyContactInfo }) {
                     </li>
                 })}
                 {editable && 
-                <Edit
-                    formType={'password-update'} 
-                    requestUrl={'/user/password-update'}
-                    formattingFunction={passwordConfirmationCheck}
-                />}
+                <li className='list-group-item'>
+                    <Edit
+                        formType={'password-update'} 
+                        requestUrl={'/user/password-update'}
+                        formattingFunction={passwordConfirmationCheck}
+                    />
+                </li>}
             </ul>
         </>
     )

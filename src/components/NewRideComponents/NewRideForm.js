@@ -6,6 +6,8 @@ import inputObjects from '../../inputs.json';
 import ChooseDate from '../CommonComponents/ChooseDate';
 import ChooseTags from '../CommonComponents/ChooseTags';
 import { Navigate } from 'react-router-dom';
+import ErrorMessage from '../CommonComponents/ErrorMessage';
+import Loading from '../CommonComponents/Loading';
 
 function NewRideForm() {
     const newRideChecks = ({ values, event }) => {
@@ -28,43 +30,37 @@ function NewRideForm() {
             {response?.ride_id ? <Navigate to={`/ride/${response.ride_id}`}/> : 
             <form onSubmit={handleSubmit}>
                 <h1>New Ride Form</h1>
-                <h2>Instructions</h2>
-                <ul>
-                    <li>Required fields are followed by <strong><span aria-label="required">*</span></strong>.</li>
-                    <li>Location can only contain letters, numbers, spaces, or commas,
+                <ul className='list-group m-3'>
+                    <li className='list-group-item'>Required fields are followed by <strong><span aria-label="required">*</span></strong>.</li>
+                    <li className='list-group-item'>Location can only contain letters, numbers, spaces, or commas,
                         and must be limited to 50 characters.</li>
-                    <li>At least one filter must be true.</li>
-                    <li>Additional comments must be limited to 1500 characters.</li>
+                    <li className='list-group-item'>At least one tag must be selected.</li>
+                    <li className='list-group-item'>Additional comments must be limited to 1500 characters.</li>
                 </ul>
                 
                 <InputItem 
                     inputObject={inputObjects.location}
                     value={values.location}
                     handleChange={handleChange}
-                    />
-                <br/>
+                />
 
                 <ChooseDate values={values} handleChange={handleChange} />
 
-                <br/>
-                <br/>
 
+                <p className='my-3'>Please check one or more:*</p>
                 <ChooseTags isDisabled={false}/>
             
-                <br/>
-                <br/>
 
                 <InputItem 
                     inputObject={inputObjects.additional_comments}
                     value={values.additional_comments}
                     handleChange={handleChange}
-                    />
-                <br/>
+                />
 
-                {errorMessage ? <p>{errorMessage}<br/></p> : null}
-                {requestInProcess ? <p>Loading...<br/></p> : null}
+                <ErrorMessage error={errorMessage}/>
+                <Loading loading={requestInProcess}/>
 
-                <button type="submit">Submit</button>
+                <button type="submit" className='btn btn-primary'>Submit</button>
             </form> }
         </>
     )

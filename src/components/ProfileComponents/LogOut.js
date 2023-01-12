@@ -8,7 +8,7 @@ function LogOut({ setIsAuthenticated }) {
   }
 
   return (
-    <button onClick={handleLogOut}>Log out</button>
+    <button onClick={handleLogOut} className="btn btn-danger">Log out</button>
   )
 }
 

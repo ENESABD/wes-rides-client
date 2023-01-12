@@ -39,7 +39,7 @@ function RideForViewer({ rideInfo, id }) {
         rideStartDate={rideInfo.start_date}
       />
       
-      <Link to={-1}>Go back</Link>
+      <Link to={-1} className='btn btn-outline-secondary mt-3'>Go back</Link>
     </div>
   )
 }

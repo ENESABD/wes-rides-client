@@ -19,6 +19,7 @@ import RideInterest from './pages/RideInterest';
 import SignUp from './pages/SignUp';
 
 import useVerify from './hooks/useVerify';
+import Loading from './components/CommonComponents/Loading';
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useVerify();
 
   if (isAuthenticated === undefined) {
-    return <h1>Loading...</h1>
+    return <Loading loading={true}/>
   }
 
   return (

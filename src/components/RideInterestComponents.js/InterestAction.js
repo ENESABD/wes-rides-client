@@ -35,33 +35,43 @@ function InterestAction({ rideInterestId, status }) {
             {requestInProgress && <p>Loading...</p>}
             {errorMessage && <p>{errorMessage}</p>}
 
-            <button onClick={() => setConfirmationForAccepting(true)}>
+            <p>You have not yet taken any action regarding this request. 
+                The user who made the request will be notified once you make a decision.
+            </p>
+
+            <button onClick={() => setConfirmationForAccepting(true)}
+                className='btn btn-success me-3'>
                 Confirm
             </button>
 
             {confirmationForAccepting &&
             <div>
-            <div>Are you sure you want to confirm this request?</div>
-            <button value="accepted" onClick={handleAction}>
+            <div className='my-2'>Are you sure you want to confirm this request?</div>
+            <button value="accepted" onClick={handleAction}
+                className='btn btn-secondary me-3'>
                 Yes
             </button>
-            <button onClick={() => setConfirmationForAccepting(false)}>
+            <button onClick={() => setConfirmationForAccepting(false)}
+                className='btn btn-danger'>
                 No
             </button>
             </div>
             }
 
-            <button onClick={() => setConfirmationForRejecting(true)}>
+            <button onClick={() => setConfirmationForRejecting(true)}
+                className='btn btn-danger my-3'>
                 Reject
             </button>
 
             {confirmationForRejecting &&
             <div>
-            <div>Are you sure you want to deny this request?</div>
-            <button value="rejected" onClick={handleAction}>
+            <div className='my-2'>Are you sure you want to deny this request?</div>
+            <button value="rejected" onClick={handleAction}
+                className='btn btn-danger me-3'>
                 Yes
             </button>
-            <button onClick={() => setConfirmationForRejecting(false)}>
+            <button onClick={() => setConfirmationForRejecting(false)}
+                className='btn btn-secondary'>
                 No
             </button>
             </div>

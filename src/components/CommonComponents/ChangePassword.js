@@ -12,11 +12,8 @@ function ChangePassword({ values, handleChange, isReset }) {
                 handleChange={handleChange}
             />}
 
-            <br/>
-
             <p>Enter a new password. It must contain between 6 and 32 characters.</p>
-            
-            <br/>
+        
 
             <InputItem 
                 inputObject={inputObjects.new_password}
@@ -24,15 +21,11 @@ function ChangePassword({ values, handleChange, isReset }) {
                 handleChange={handleChange}
             />
 
-            <br/>
-
             <InputItem 
                 inputObject={inputObjects.new_password2}
                 value={values.new_password2}
                 handleChange={handleChange}
             />
-
-            <br/>
         </>
     )
 }

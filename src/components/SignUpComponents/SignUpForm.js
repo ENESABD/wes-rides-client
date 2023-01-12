@@ -3,7 +3,9 @@ import { Navigate } from 'react-router-dom';
 import { passwordConfirmationCheck } from '../../commonFunctions';
 import useFormWithRequest from '../../hooks/useFormWithRequest';
 import inputObjects from '../../inputs.json';
+import ErrorMessage from '../CommonComponents/ErrorMessage';
 import InputItem from '../CommonComponents/InputItem';
+import Loading from '../CommonComponents/Loading';
 
 function SignUpForm() {
 
@@ -12,19 +14,25 @@ function SignUpForm() {
 
     return (
         <> {
-            response?.success ? <Navigate to='/email-sent' />
+            response?.success ? <Navigate to='/email-sent'/>
             :
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className=''>
                 <h1>Sign Up Form</h1>
-                <h2>Instructions</h2>
-                <ul>
-                    <li>Required fields are followed by <strong><span aria-label="required">*</span></strong>.</li>
-                    <li>Name must start and end with a letter, cannot contain a number, special characters, or consecutive spaces, 
+                <ul className='list-group m-3'>
+                    <li className='list-group-item'>
+                        Required fields are followed by <strong><span aria-label="required">*</span></strong>.</li>
+                    <li className='list-group-item'>
+                        Name must start and end with a letter, cannot contain a number, special characters, or consecutive spaces, 
                         and must be limited to 24 characters.</li>
-                    <li>Email must be a Wesleyan email.</li>
-                    <li>Password must contain between 6 and 32 characters.</li>
-                    <li>If provided, phone number must contain exactly 10 digits. (Do not include '+1' or any non-numerical characters)</li>
+                    <li className='list-group-item'>
+                        Email must be a Wesleyan email.</li>
+                    <li className='list-group-item'>
+                        Password must contain between 6 and 32 characters.</li>
+                    <li className='list-group-item'>
+                        If provided, phone number must contain exactly 10 digits. (Do not include '+1' or any non-numerical characters)</li>
                 </ul>
+
+                <h2>Basics</h2>
                 
                 <InputItem
                     inputObject={inputObjects.name}
@@ -32,7 +40,7 @@ function SignUpForm() {
                     handleChange={handleChange}
                 />
                 
-                <br/>
+                
 
                 <InputItem
                     inputObject={inputObjects.email}
@@ -40,7 +48,7 @@ function SignUpForm() {
                     handleChange={handleChange}
                 />
 
-                <br/>
+                
 
                 <InputItem
                     inputObject={inputObjects.new_password}
@@ -48,7 +56,7 @@ function SignUpForm() {
                     handleChange={handleChange}
                 />
 
-                <br/>
+                
 
                 <InputItem
                     inputObject={inputObjects.new_password2}
@@ -56,7 +64,7 @@ function SignUpForm() {
                     handleChange={handleChange}
                 />
 
-                <br/>
+                
 
                 <h2>Contact information</h2>
                 <p>Your personal phone number or social media accounts are NOT required for signing up. 
@@ -68,7 +76,7 @@ function SignUpForm() {
                     handleChange={handleChange}
                 />
 
-                <br/>
+                
 
                 <InputItem
                     inputObject={inputObjects.snapchat}
@@ -76,7 +84,7 @@ function SignUpForm() {
                     handleChange={handleChange}
                 />
 
-                <br/>
+                
 
                 <InputItem
                     inputObject={inputObjects.instagram}
@@ -84,7 +92,7 @@ function SignUpForm() {
                     handleChange={handleChange}
                 />
 
-                <br/>
+                
 
                 <InputItem
                     inputObject={inputObjects.facebook}
@@ -92,12 +100,12 @@ function SignUpForm() {
                     handleChange={handleChange}
                 />
 
-                <br/>
+                
 
-                {errorMessage ? <p>{errorMessage}<br/></p> : null}
-                {requestInProcess ? <p>Loading...<br/></p> : null}
+                <ErrorMessage error={errorMessage}/>
+                <Loading loading={requestInProcess}/>
 
-                <button type="submit">Register</button>
+                <button type="submit" className='btn btn-primary'>Register</button>
             </form> 
         } </>
     )

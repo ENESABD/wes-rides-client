@@ -4,11 +4,10 @@ import ResetRequestForm from '../components/ForgotPasswordComponents/ResetReques
 
 function ForgotPassword() {
   return (
-    <div>
+    <main className='p-2'>
       <ResetRequestForm/>
-      <br/>
-      <Link to={'/login'}>Go to the login page</Link>
-    </div>
+      <Link to={'/login'} className='btn btn-outline-secondary mt-3'>Go to the login page</Link>
+    </main>
   )
 }
 
