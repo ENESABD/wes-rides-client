@@ -3,9 +3,9 @@ import { Navigate, useParams } from 'react-router-dom';
 import useAxios from '../hooks/useAxios';
 import RideForOwner from './RideForOwner';
 import RideForViewer from './RideForViewer';
+import styles from '../styles/styles.module.css';
 
 function Ride() {
-
   const [rideUrl, setRideUrl] = useState();
   const [rideInfo, errorMessage, isLoading] = useAxios('GET', rideUrl);
   const [isOwner, setIsOwner] = useState();
@@ -16,7 +16,7 @@ function Ride() {
     if (id) {
       setRideUrl(`rides/${id}`);
     }
-  }, [id])
+  }, [id]);
 
   useEffect(() => {
     if (rideInfo?.request_made_by_owner === true) {
@@ -26,16 +26,25 @@ function Ride() {
     if (rideInfo?.request_made_by_owner === false) {
       setIsOwner(false);
     }
-  }, [rideInfo])
+  }, [rideInfo]);
 
   return (
-    <div>
-      {errorMessage ? <Navigate to="/not-found" replace={true} /> :
-      (isLoading || !rideInfo) ? <p>Loading...</p> :
-      isOwner ? <RideForOwner rideInfo={rideInfo} id={id}/> : 
-      <RideForViewer rideInfo={rideInfo} id={id}/>}
+    <div className={styles.body}>
+      <div className={styles.formContainer}>
+        <div className={styles.form}>
+          {errorMessage ? (
+            <Navigate to='/not-found' replace={true} />
+          ) : isLoading || !rideInfo ? (
+            <p className={styles.errorMessage}>Loading...</p>
+          ) : isOwner ? (
+            <RideForOwner rideInfo={rideInfo} id={id} />
+          ) : (
+            <RideForViewer rideInfo={rideInfo} id={id} />
+          )}
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
 export default Ride;
