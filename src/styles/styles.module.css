@@ -1,0 +1,376 @@
+.landing {
+  background: linear-gradient(
+    90deg,
+    rgba(72, 84, 97, 1) 20%,
+    rgba(52, 53, 55, 1) 100%
+  );
+  height: 85vh;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textHeading {
+  color: #fff;
+  font-size: 3rem;
+}
+
+.signup {
+  background-color: white;
+  font-size: 2rem;
+  color: #485461;
+  padding: 15px 90px;
+  text-decoration: none;
+  border-radius: 40px;
+  transition-duration: 2s;
+  transition-property: background;
+  border: 2px solid white;
+  margin-top: 40px;
+}
+
+.signup:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(72, 84, 97, 1) 20%,
+    rgba(52, 53, 55, 1) 100%
+  );
+  color: white;
+}
+
+.login {
+  margin-top: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500px;
+  font-size: 1.25rem;
+  transition-duration: 0.4s;
+}
+
+.login:hover {
+  color: #ff5151;
+}
+
+.navBar {
+  background-color: #ff5151;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 2rem;
+  height: 15vh;
+}
+
+.navItem {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.25rem;
+  padding: 1rem;
+}
+
+.otherContainer {
+  padding-top: 1rem;
+}
+
+.postRideButton {
+  margin-top: 1rem;
+  margin-bottom: -20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -40px;
+}
+
+.button {
+  background-color: #485461;
+  border: 1px solid #2b2a2a;
+  border-radius: 2rem;
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.postButton {
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 2rem;
+  color: #485461;
+  text-decoration: none;
+  padding: 1rem 1.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition-duration: 0.4s;
+  margin-top: 1rem;
+}
+
+.postButton:hover {
+  background-color: #485461;
+  color: white;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  background-color: #fff;
+  padding-bottom: 10px;
+}
+
+.search {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid;
+  border-radius: 2rem;
+  width: 50%;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  list-style: none;
+  gap: 15px;
+}
+
+.checkbox {
+  margin: 3px 0px;
+  width: 100px;
+  cursor: pointer;
+  background-color: #adadad;
+  text-align: center;
+  vertical-align: center;
+  padding: 0.5rem;
+  box-shadow: 0px 5px 20px 2px rgb(0 0 0 / 10%);
+  transition: all 200ms ease-in-out;
+  border-radius: 10px;
+}
+
+.label {
+  background-color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  border-radius: 25px;
+  white-space: nowrap;
+  margin: 3px 0px;
+  background-color: #adadad;
+}
+
+.input {
+  cursor: 'pointer';
+  display: none;
+}
+
+.input:checked + .label {
+  font-weight: bold;
+  appearance: none;
+}
+
+.input:checked + .checkbox {
+  background-color: #e0e0e0;
+}
+
+.main {
+  background-color: #485461;
+  height: 100%;
+  overflow: scroll;
+}
+
+.extraText {
+  color: #fff;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 0.375rem;
+  width: 40%;
+  background-color: #fff;
+}
+
+.date {
+  height: 50%;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+  border-top: 1px solid rgba(0, 0, 0, 0.175);
+  background-color: #eaeaea;
+}
+
+.location {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.seeMoreButton {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: #ff5151;
+  color: #fff;
+  border-radius: 0.375rem;
+  margin-left: 36px;
+  margin-right: 36px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    min-width: 300px;
+    align-items: center;
+  }
+}
+
+.page {
+  height: 80vh;
+}
+
+.errorMessage {
+  color: white;
+  font-size: 1.25rem;
+  text-align: center;
+  /* margin-top: 60px; */
+}
+
+.body {
+  height: 85vh;
+  background-color: #485461;
+  overflow: scroll;
+}
+
+.headingTwo {
+  margin-top: 0px;
+  text-align: center;
+  padding-top: 20px;
+  color: white;
+  font-size: 2rem;
+  padding-bottom: 20px;
+}
+
+.headingOne {
+  margin-top: 0px;
+  text-align: center;
+}
+
+.headingTwoFive {
+  margin-top: 0px;
+  padding-top: 20px;
+  color: white;
+  font-size: 2rem;
+  padding-left: 2rem;
+}
+
+.form {
+  background-color: white;
+  width: 80%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.formContainer {
+  padding-top: 30px;
+}
+
+.formInside {
+  background-color: whitesmoke;
+  padding: 1rem;
+}
+
+.formInput {
+  padding: 5px;
+  margin: 10px 0;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+  margin-left: 10px;
+}
+
+.formButton {
+  background-color: #485461;
+  border: 1px solid #2b2a2a;
+  border-radius: 2rem;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 4rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: auto;
+  font-weight: 500;
+  transition-duration: 0.4s;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formButton:hover {
+  background-color: white;
+  color: #485461;
+}
+
+.link {
+  text-align: center;
+  cursor: pointer;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.linkText {
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  transition-duration: 0.4s;
+}
+
+.linkText:hover {
+  color: #ff5151;
+}
+
+.linkTextBlack {
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+  transition-duration: 0.4s;
+}
+
+.linkTextBlack:hover {
+  color: #ff5151;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.linkContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.linkTextFlex {
+  padding: 1rem;
+  font-size: 1rem;
+  text-decoration: none;
+  color: white;
+  transition-duration: 0.4s;
+}
+
+.linkTextFlex:hover {
+  color: #ff5151;
+}

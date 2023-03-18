@@ -5,66 +5,74 @@ import RideStatus from '../components/RideForOwnerComponents/RideStatus';
 import DeleteRide from '../components/RideForOwnerComponents/DeleteRide';
 import inputObjects from '../inputs.json';
 import { captureRideTags } from '../commonFunctions';
+import styles from '../styles/styles.module.css';
 
 function RideForOwner({ rideInfo, id }) {
-
   const [currentRideInfo, setCurrentRideInfo] = useState();
 
   useEffect(() => {
     setCurrentRideInfo(rideInfo);
-  }, [rideInfo])
-  
+  }, [rideInfo]);
+
   let rideStatus = rideInfo.status;
-  let editable =  rideStatus === 'awaiting_confirmation' ||
-                  rideStatus === 'pending' ? true
-                  : false;
+  let editable =
+    rideStatus === 'awaiting_confirmation' || rideStatus === 'pending'
+      ? true
+      : false;
 
-    
-
-  const noChangeWithSideEffect = ({values}) => {
+  const noChangeWithSideEffect = ({ values }) => {
     const value_key = Object.keys(values)[0];
     if (value_key) {
-        setCurrentRideInfo((prevRideInfo => ({...prevRideInfo, [inputObjects[value_key].value_label]: values[value_key]})))
+      setCurrentRideInfo((prevRideInfo) => ({
+        ...prevRideInfo,
+        [inputObjects[value_key].value_label]: values[value_key],
+      }));
     }
     return values;
-  }  
+  };
 
-  const captureRideTagsWithSideEffect = ({event}) => {
-    const updatedTags = captureRideTags({event});
-    if (typeof(updatedTags) !== "string") {
-      setCurrentRideInfo((prevRideInfo => ({...prevRideInfo, ...updatedTags })))
+  const captureRideTagsWithSideEffect = ({ event }) => {
+    const updatedTags = captureRideTags({ event });
+    if (typeof updatedTags !== 'string') {
+      setCurrentRideInfo((prevRideInfo) => ({
+        ...prevRideInfo,
+        ...updatedTags,
+      }));
     }
     return updatedTags;
-  }  
+  };
 
   return (
     <div>
-      <RideInfo 
+      <RideInfo
         id={id}
         editable={editable}
         rideLocation={currentRideInfo?.location}
         rideDates={[currentRideInfo?.start_date, currentRideInfo?.end_date]}
         rideComments={currentRideInfo?.additional_comments}
-        rideTags={{has_car: currentRideInfo?.has_car, 
-                  wants_car: currentRideInfo?.wants_car, 
-                  wants_uber: currentRideInfo?.wants_uber}}
+        rideTags={{
+          has_car: currentRideInfo?.has_car,
+          wants_car: currentRideInfo?.wants_car,
+          wants_uber: currentRideInfo?.wants_uber,
+        }}
         noChangeWithSideEffect={noChangeWithSideEffect}
         captureRideTagsWithSideEffect={captureRideTagsWithSideEffect}
       />
-      <RideStatus 
-        rideStatus={rideStatus} 
+      <RideStatus
+        rideStatus={rideStatus}
         associatedRideInterests={currentRideInfo?.associated_ride_interests}
       />
 
       {(rideStatus === 'pending' ||
-      rideStatus === 'awaiting_confirmation' ||
-      rideStatus === 'failed') &&
-      
-      <DeleteRide id={id}/>
-      }
-      <Link to={'/my-rides'}>Go to my rides</Link>
+        rideStatus === 'awaiting_confirmation' ||
+        rideStatus === 'failed') && <DeleteRide id={id} />}
+      <div className={styles.centerText}>
+        <Link to={'/my-rides'} className={styles.linkTextBlack}>
+          Go to my rides
+        </Link>
+      </div>
     </div>
-  )
+  );
 }
 
 export default RideForOwner;
